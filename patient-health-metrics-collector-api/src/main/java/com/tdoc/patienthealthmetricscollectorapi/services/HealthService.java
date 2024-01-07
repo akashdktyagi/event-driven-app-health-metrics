@@ -1,5 +1,7 @@
 package com.tdoc.patienthealthmetricscollectorapi.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class HealthService {
 
     public HealthMetrics addPatientData(HealthMetrics healthMetrics) {
         return healthRepository.save(healthMetrics);
+    }
 
+    public List<HealthMetrics> getPatientData() {
+        return healthRepository.findAll();
     }
 }

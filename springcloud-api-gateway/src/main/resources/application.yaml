@@ -1,27 +1,27 @@
 server:
   port: 8081 
-  
+
+debug: true
+logging:
+  level:
+    org.springframework: DEBUG
+
+
 spring:
   cloud:
     gateway:
       routes:
-        - id: error
-          uri: ${ERROR_URI:http://localhost:8083}
+        - id: health_metrics
+          uri: http://localhost:8082
           predicates:
-            - Path=/error/**
-          filters:
-            - PrefixPath=/api
-        - id: some_route
-          uri: ${SOME_ROUTE_URI:http://localhost:8082}
+            - Path=/api/v1/metrics/**,swagger-ui.html
+        - id: health_metrics_swagger
+          uri: http://localhost:8082
           predicates:
-            - Path=/some_path/**
-          filters:
-            - PrefixPath=/api
-            - AddRequestHeader=X-Request-Red, Blue
-            - AddResponseHeader=X-Response-Red, Blue
+            - Path=/api/v1/metrics/**            
 
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "gateway"

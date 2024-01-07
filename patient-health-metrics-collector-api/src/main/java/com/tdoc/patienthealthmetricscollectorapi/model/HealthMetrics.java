@@ -7,16 +7,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "health_metrics")
 public class HealthMetrics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Nonnull
-    String id;
+    Integer id;
 
     @Nonnull @Column(name = "device_id")
     String deviceId;
