@@ -6,8 +6,8 @@
 * I have taken a incremental approach of adding new features/concepts in the app. Also, I am documenting each increment and things I have done in that increment. This will help you all to follow it step by step.
 * Each increment I have marked with a unique git tag id. You can checkout each tag to see what has been done in that increment. I have also documented the steps and things I have done in that increment.
 * You can see all the tags: https://github.com/akashdktyagi/event-driven-app-health-metrics/tags
-* To checkout a specific tag you need to clone the project and then run: ```git checkout -b newBranchName tagName
-```
+* To checkout a specific tag you need to clone the project and then run: 
+```git checkout -b newBranchName tagName```
 * This will create a new branch with the changes of that branch. This apraoch is usefull only if you wish to follow the exact steps which I took. If not then follow the code in main. It is up to date with fully functional EDA app with the use case.
 
 
