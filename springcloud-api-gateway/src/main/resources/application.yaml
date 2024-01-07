@@ -14,14 +14,10 @@ spring:
         - id: health_metrics
           uri: http://localhost:8082
           predicates:
-            - Path=/api/v1/metrics/**,swagger-ui.html
-        - id: health_metrics_swagger
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/v1/metrics/**            
+            - Path=/api/v1/metrics/**,swagger-ui.html        
 
 management:
   endpoints:
     web:
       exposure:
-        include: "gateway"
+        include: "*"
