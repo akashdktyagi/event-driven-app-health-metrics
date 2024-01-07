@@ -10,17 +10,22 @@ spring:
   datasource:
     url: jdbc:h2:mem:mydb # jdbc:h2:file:/data/demo if persistence is required for file
     username: root
-    password: demo
+    password: root
     driverClassName: org.h2.Driver
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-    # hibernate:
-    #   ddl-auto: none
+    hibernate:
+      ddl-auto: none
 
 springdoc:
   swagger-ui:
     path: swagger-ui.html
 
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+  schemas: public
+  baseline-on-migrate: true
 
 mangement:
   endpoints:
