@@ -14,7 +14,7 @@ public class HealthService {
     HealthRepository healthRepository;
 
     @Autowired
-    public HealthService(HealthRepository healthRepository) {
+    public HealthService(HealthRepository healthRepository ) {
         this.healthRepository = healthRepository;
     }
 

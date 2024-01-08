@@ -11,9 +11,9 @@
 * This will create a new branch with the changes of that branch. This apraoch is usefull only if you wish to follow the exact steps which I took. If not then follow the code in main. It is up to date with fully functional EDA app with the use case.
 
 
-### Increment 1: MVP-1
+### Increment 1: MVP-1 : Init Steps
 #### Change Log:
-* Things to learn:
+* Main Changes:
     * Basic Spring Boot app
     * Flyway library for DB evolution
     * Spring cloud API gateway
@@ -22,6 +22,7 @@
         * A simple rest api
         * h2 DB used.
         * impl flyway migration scripts for evolving the db later.
+        * When JPA and flyway both are being used make sure you disable the creation on table by jpa using:     hibernate: ddl-auto: none ; otherwise this could lead to clash.
         * Added a get and post endpoint to accept the patient vitals and save in h2 in-mem db
         * Added an api gateway component:
     * Used Spring cloud api gateway here.
@@ -31,3 +32,20 @@
     * https://medium.com/@m1326318/configuring-spring-cloud-gateway-ced5dae663bb
     * https://spring.io/guides/gs/gateway/
 
+### Increment: MVP-2 : Implemented EDA Outbox Pattern
+#### Change Log:
+* Main Changes:
+    * Added Outbox Event Driven Architecture pattern (Not as fancy as it sounds. Check the link below from ref)
+    * Not fully implemented i.e. data goes to two tables in the same tnx but publish to kafka topic does not happen yet in this change.
+* Details:
+    * Basically, created two tables/Entities in JPA and flyway.
+    * Every time data comes to controller it now goes to two table. One health_metrics table and second outbox_message table.
+    * Only thing to note is that both the table updates happen happen with in the same transaction. See the use of ```@Transaction``` annotation.
+    * This means that either the data goes in both the tables or none at all.
+    * I don't have to explain this here. Check the patterns details in below links.
+* Reference Links:
+    * https://microservices.io/patterns/data/transactional-outbox.html
+
+* Images:
+    * ![Health Metrics table](img/image.png)
+    * ![Outbox Entity Table](img/image-1.png)

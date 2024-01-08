@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tdoc.patienthealthmetricscollectorapi.model.HealthMetrics;
 import com.tdoc.patienthealthmetricscollectorapi.services.HealthService;
+import com.tdoc.patienthealthmetricscollectorapi.services.FinalTransactionService;
+
+import jakarta.transaction.Transaction;
 
 @Controller
 @RestController
@@ -23,11 +26,11 @@ import com.tdoc.patienthealthmetricscollectorapi.services.HealthService;
 
 public class ApiContoller {
     
-    HealthService healthService;
+    FinalTransactionService transactionService;
 
     @Autowired
-    public ApiContoller(HealthService healthService) {
-        this.healthService = healthService;
+    public ApiContoller(FinalTransactionService transactionService) {
+        this.transactionService = transactionService;
     }
   
     @PostMapping("/metrics")
@@ -35,7 +38,7 @@ public class ApiContoller {
     
         ResponseEntity<String> response = null;
         try {
-            HealthMetrics healthMetricsResponse = healthService.addPatientData(healthMetrics);
+            HealthMetrics healthMetricsResponse = transactionService.saveToEntityAndOutboxTable(healthMetrics);
             response = ResponseEntity.ok(healthMetricsResponse.toString());
         } catch (Exception e) {
             response = ResponseEntity.badRequest().body("Could not add patient data due to error: \n " + e.getMessage());
