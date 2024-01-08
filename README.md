@@ -45,6 +45,8 @@
     * I don't have to explain this here. Check the patterns details in below links.
 * Reference Links:
     * https://microservices.io/patterns/data/transactional-outbox.html
+    * https://medium.com/design-microservices-architecture-with-patterns/outbox-pattern-for-microservices-architectures-1b8648dfaa27
+    * https://www.youtube.com/watch?v=u8fOnxAxKHk
 
 * Images:
     * ![Health Metrics table](img/image.png)
