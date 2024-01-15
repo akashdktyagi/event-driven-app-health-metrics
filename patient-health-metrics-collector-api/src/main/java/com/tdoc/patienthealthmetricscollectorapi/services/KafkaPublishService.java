@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-// TODO: yet to be developed
 public class KafkaPublishService {
     
     KafkaTemplate<String, String> kafkaTemplate;

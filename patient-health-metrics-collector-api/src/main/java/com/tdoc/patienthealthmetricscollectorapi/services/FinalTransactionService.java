@@ -7,8 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tdoc.patienthealthmetricscollectorapi.model.HealthMetrics;
 import com.tdoc.patienthealthmetricscollectorapi.model.OutboxEntity;
-
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

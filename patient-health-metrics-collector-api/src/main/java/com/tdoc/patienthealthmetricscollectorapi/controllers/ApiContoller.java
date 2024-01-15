@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tdoc.patienthealthmetricscollectorapi.model.HealthMetrics;
@@ -56,6 +57,21 @@ public class ApiContoller {
             response = ResponseEntity.ok(healthMetricsResponse.toString());
         } catch (Exception e) {
             response = ResponseEntity.badRequest().body("Could not get patient data due to error: \n " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return response;
+    }
+
+    @PostMapping("/produce-to-kafka-topic")
+    public ResponseEntity<String> produceToKafkaTopic(@RequestParam(name = "topicName") String param1, @RequestBody HealthMetrics healthMetrics) {
+    
+        ResponseEntity<String> response = null;
+        try {
+            HealthMetrics healthMetricsResponse = transactionService.saveToEntityAndOutboxTable(healthMetrics);
+            response = ResponseEntity.ok(healthMetricsResponse.toString());
+        } catch (Exception e) {
+            response = ResponseEntity.badRequest().body("Could not add patient data due to error: \n " + e.getMessage());
             e.printStackTrace();
         }
 
