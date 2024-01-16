@@ -20,6 +20,11 @@ spring:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer      
 
 springdoc:
   swagger-ui:
@@ -36,3 +41,4 @@ mangement:
     web:
       exposure:
         include: "*"
+

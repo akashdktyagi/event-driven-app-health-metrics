@@ -28,10 +28,12 @@ import jakarta.transaction.Transaction;
 public class ApiContoller {
     
     FinalTransactionService transactionService;
+    HealthService healthService;
 
     @Autowired
-    public ApiContoller(FinalTransactionService transactionService) {
+    public ApiContoller(FinalTransactionService transactionService,HealthService healthService) {
         this.transactionService = transactionService;
+        this.healthService = healthService;
     }
   
     @PostMapping("/metrics")
